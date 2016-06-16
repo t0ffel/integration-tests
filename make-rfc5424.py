@@ -18,7 +18,7 @@ sock = None
 if len(sys.argv) > 1:
     ip = sys.argv[1]
     port = int(sys.argv[2])
-    sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 nfacility = 24
 #nfacility = 4
@@ -44,7 +44,7 @@ for facility in range(0, nfacility):
             'msg'   : 'This "is" a message [which] will \'require\' {JSON: escaping}'
         }
         hsh['cee'] = json.dumps({'msg': hsh['msg']})
-        msg = '<%(pri)d>%(ver)d %(ts)s %(hn)s %(app)s %(pid)d %(msgid)s - %(msg)s' % hsh
+        msg = '<%(pri)d>%(ver)d %(ts)s %(hn)s %(app)s %(pid)d %(msgid)s - @cee:%(cee)s' % hsh
         if sock:
             rv = sock.sendto(msg, (ip, port))
             print "rv %s" % rv
