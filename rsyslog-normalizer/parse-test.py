@@ -17,7 +17,7 @@ def get_matches(es_server, debug=False):
          }
     }
     date = datetime.datetime.today()
-    index_list = ["v2016.03.10.0-viaq-%s" %(str(date).split(' ')[0].replace('-','.')) ]
+    index_list = ["temp-logstash-%s" %(str(date).split(' ')[0].replace('-','.')) ]
 
     matches = es.search(index_list, body=query, size=100, explain=True)
     print "Matches for: query: %s | index:  %s" %(query, index_list)
